@@ -1,0 +1,147 @@
+2023-03-23 02:11:48.337  INFO 19000 --- [restartedMain] kz.kaznu.smart.SmartApplication          : Starting SmartApplication using Java 11.0.15 on WIN-83ME95D7VUE with PID 19000 (C:\Users\User\IdeaProjects\smart\target\classes started by Mekhrat in C:\Users\User\IdeaProjects\smart)
+2023-03-23 02:11:48.343  INFO 19000 --- [restartedMain] kz.kaznu.smart.SmartApplication          : No active profile set, falling back to 1 default profile: "default"
+2023-03-23 02:11:48.704  INFO 19000 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-03-23 02:11:48.704  INFO 19000 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-03-23 02:11:49.771  INFO 19000 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-23 02:11:49.858  INFO 19000 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 78 ms. Found 9 JPA repository interfaces.
+2023-03-23 02:11:50.490  INFO 19000 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8000 (http)
+2023-03-23 02:11:50.500  INFO 19000 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-23 02:11:50.500  INFO 19000 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.58]
+2023-03-23 02:11:50.564  INFO 19000 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-23 02:11:50.564  INFO 19000 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1859 ms
+2023-03-23 02:11:50.789  INFO 19000 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-23 02:11:50.835  INFO 19000 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.5.Final
+2023-03-23 02:11:50.976  INFO 19000 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-23 02:11:51.095  INFO 19000 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-03-23 02:11:51.571  INFO 19000 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-03-23 02:11:51.588  INFO 19000 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2023-03-23 02:11:52.863  INFO 19000 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-23 02:11:52.877  INFO 19000 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-23 02:11:53.560  WARN 19000 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-23 02:11:54.049  INFO 19000 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure any request
+2023-03-23 02:11:54.286  INFO 19000 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-03-23 02:11:54.751  INFO 19000 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-03-23 02:11:54.805  INFO 19000 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-23 02:11:54.826  INFO 19000 --- [restartedMain] kz.kaznu.smart.SmartApplication          : Started SmartApplication in 6.99 seconds (JVM running for 11.61)
+2023-03-23 02:11:59.998  INFO 19000 --- [http-nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-23 02:11:59.999  INFO 19000 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-23 02:12:00.002  INFO 19000 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-03-23 02:12:16.215  WARN 19000 --- [http-nio-8000-exec-5] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [137] milliseconds.
+2023-03-23 02:23:05.696  INFO 19000 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-23 02:23:05.700  INFO 19000 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-03-23 02:23:05.728  INFO 19000 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-03-23 02:23:08.529  INFO 15264 --- [restartedMain] kz.kaznu.smart.SmartApplication          : Starting SmartApplication using Java 11.0.15 on WIN-83ME95D7VUE with PID 15264 (C:\Users\User\IdeaProjects\smart\target\classes started by Mekhrat in C:\Users\User\IdeaProjects\smart)
+2023-03-23 02:23:08.531  INFO 15264 --- [restartedMain] kz.kaznu.smart.SmartApplication          : No active profile set, falling back to 1 default profile: "default"
+2023-03-23 02:23:08.833  INFO 15264 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-03-23 02:23:08.834  INFO 15264 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-03-23 02:23:09.492  INFO 15264 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-23 02:23:09.586  INFO 15264 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 86 ms. Found 9 JPA repository interfaces.
+2023-03-23 02:23:10.264  INFO 15264 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8000 (http)
+2023-03-23 02:23:10.272  INFO 15264 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-23 02:23:10.273  INFO 15264 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.58]
+2023-03-23 02:23:10.333  INFO 15264 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-23 02:23:10.334  INFO 15264 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1500 ms
+2023-03-23 02:23:10.610  INFO 15264 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-23 02:23:10.664  INFO 15264 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.5.Final
+2023-03-23 02:23:10.779  INFO 15264 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-23 02:23:10.887  INFO 15264 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-03-23 02:23:11.174  INFO 15264 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-03-23 02:23:11.192  INFO 15264 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2023-03-23 02:23:12.452  INFO 15264 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-23 02:23:12.468  INFO 15264 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-23 02:23:13.010  WARN 15264 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-23 02:23:13.378  INFO 15264 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure any request
+2023-03-23 02:23:13.606  INFO 15264 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-03-23 02:23:13.918  INFO 15264 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-03-23 02:23:13.965  INFO 15264 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-23 02:23:13.978  INFO 15264 --- [restartedMain] kz.kaznu.smart.SmartApplication          : Started SmartApplication in 5.948 seconds (JVM running for 7.194)
+2023-03-23 02:23:15.315  INFO 15264 --- [http-nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-23 02:23:15.317  INFO 15264 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-23 02:23:15.319  INFO 15264 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-03-23 03:17:40.535  INFO 15264 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-23 03:17:40.541  INFO 15264 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-03-23 03:17:40.547  INFO 15264 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-03-23 03:43:54.348  INFO 2616 --- [restartedMain] kz.kaznu.smart.SmartApplication          : Starting SmartApplication using Java 11.0.15 on WIN-83ME95D7VUE with PID 2616 (C:\Users\User\IdeaProjects\smart\target\classes started by Mekhrat in C:\Users\User\IdeaProjects\smart)
+2023-03-23 03:43:54.350  INFO 2616 --- [restartedMain] kz.kaznu.smart.SmartApplication          : No active profile set, falling back to 1 default profile: "default"
+2023-03-23 03:43:54.588  INFO 2616 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-03-23 03:43:54.589  INFO 2616 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-03-23 03:43:55.174  INFO 2616 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-23 03:43:55.247  INFO 2616 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 66 ms. Found 9 JPA repository interfaces.
+2023-03-23 03:43:55.717  INFO 2616 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8000 (http)
+2023-03-23 03:43:55.725  INFO 2616 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-23 03:43:55.726  INFO 2616 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.58]
+2023-03-23 03:43:55.774  INFO 2616 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-23 03:43:55.774  INFO 2616 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1185 ms
+2023-03-23 03:43:55.954  INFO 2616 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-23 03:43:55.991  INFO 2616 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.5.Final
+2023-03-23 03:43:56.087  INFO 2616 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-23 03:43:56.157  INFO 2616 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-03-23 03:43:56.375  INFO 2616 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-03-23 03:43:56.386  INFO 2616 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2023-03-23 03:43:57.294  INFO 2616 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-23 03:43:57.301  INFO 2616 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-23 03:43:57.711  WARN 2616 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-23 03:43:57.975  INFO 2616 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure any request
+2023-03-23 03:43:58.149  INFO 2616 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-03-23 03:43:58.377  INFO 2616 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-03-23 03:43:58.411  INFO 2616 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-23 03:43:58.433  INFO 2616 --- [restartedMain] kz.kaznu.smart.SmartApplication          : Started SmartApplication in 4.432 seconds (JVM running for 5.21)
+2023-03-23 03:44:02.883  INFO 2616 --- [http-nio-8000-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-23 03:44:02.884  INFO 2616 --- [http-nio-8000-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-23 03:44:02.885  INFO 2616 --- [http-nio-8000-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2023-03-23 03:47:02.541  INFO 2616 --- [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-23 03:47:02.544  INFO 2616 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-03-23 03:47:02.554  INFO 2616 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-03-23 03:47:02.654  INFO 2616 --- [restartedMain] kz.kaznu.smart.SmartApplication          : Starting SmartApplication using Java 11.0.15 on WIN-83ME95D7VUE with PID 2616 (C:\Users\User\IdeaProjects\smart\target\classes started by Mekhrat in C:\Users\User\IdeaProjects\smart)
+2023-03-23 03:47:02.654  INFO 2616 --- [restartedMain] kz.kaznu.smart.SmartApplication          : No active profile set, falling back to 1 default profile: "default"
+2023-03-23 03:47:02.865  INFO 2616 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-23 03:47:02.912  INFO 2616 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 46 ms. Found 9 JPA repository interfaces.
+2023-03-23 03:47:03.040  INFO 2616 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8000 (http)
+2023-03-23 03:47:03.041  INFO 2616 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-23 03:47:03.041  INFO 2616 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.58]
+2023-03-23 03:47:03.057  INFO 2616 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-23 03:47:03.057  INFO 2616 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 400 ms
+2023-03-23 03:47:03.120  INFO 2616 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-23 03:47:03.125  INFO 2616 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2023-03-23 03:47:03.141  INFO 2616 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2023-03-23 03:47:03.142  INFO 2616 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2023-03-23 03:47:03.510  INFO 2616 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-23 03:47:03.511  INFO 2616 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-23 03:47:03.641  WARN 2616 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-23 03:47:03.824  INFO 2616 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure any request
+2023-03-23 03:47:03.899  INFO 2616 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-03-23 03:47:04.057  INFO 2616 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-03-23 03:47:04.071  INFO 2616 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-23 03:47:04.075  INFO 2616 --- [restartedMain] kz.kaznu.smart.SmartApplication          : Started SmartApplication in 1.453 seconds (JVM running for 190.852)
+2023-03-23 03:47:04.077  INFO 2616 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2023-03-23 03:47:05.624  INFO 2616 --- [Thread-7] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-23 03:47:05.625  INFO 2616 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2023-03-23 03:47:05.631  INFO 2616 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2023-03-23 03:47:05.692  INFO 2616 --- [restartedMain] kz.kaznu.smart.SmartApplication          : Starting SmartApplication using Java 11.0.15 on WIN-83ME95D7VUE with PID 2616 (C:\Users\User\IdeaProjects\smart\target\classes started by Mekhrat in C:\Users\User\IdeaProjects\smart)
+2023-03-23 03:47:05.693  INFO 2616 --- [restartedMain] kz.kaznu.smart.SmartApplication          : No active profile set, falling back to 1 default profile: "default"
+2023-03-23 03:47:05.836  INFO 2616 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-23 03:47:05.871  INFO 2616 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 35 ms. Found 9 JPA repository interfaces.
+2023-03-23 03:47:05.958  INFO 2616 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8000 (http)
+2023-03-23 03:47:05.959  INFO 2616 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-23 03:47:05.959  INFO 2616 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.58]
+2023-03-23 03:47:05.973  INFO 2616 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-23 03:47:05.973  INFO 2616 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 278 ms
+2023-03-23 03:47:06.017  INFO 2616 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-23 03:47:06.021  INFO 2616 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2023-03-23 03:47:06.031  INFO 2616 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2023-03-23 03:47:06.032  INFO 2616 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2023-03-23 03:47:06.511  INFO 2616 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-23 03:47:06.511  INFO 2616 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-23 03:47:06.630  WARN 2616 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-23 03:47:06.920  INFO 2616 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure any request
+2023-03-23 03:47:07.010  INFO 2616 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-03-23 03:47:07.134  INFO 2616 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-03-23 03:47:07.145  INFO 2616 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8000 (http) with context path ''
+2023-03-23 03:47:07.149  INFO 2616 --- [restartedMain] kz.kaznu.smart.SmartApplication          : Started SmartApplication in 1.478 seconds (JVM running for 193.926)
+2023-03-23 03:47:07.150  INFO 2616 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2023-03-23 03:47:16.213  INFO 2616 --- [http-nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-23 03:47:16.214  INFO 2616 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-23 03:47:16.218  INFO 2616 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2023-03-23 05:06:54.292  INFO 2616 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-23 05:06:54.295  INFO 2616 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2023-03-23 05:06:54.301  INFO 2616 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.

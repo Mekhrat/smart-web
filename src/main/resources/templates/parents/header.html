@@ -1,0 +1,81 @@
+<header class="d-flex justify-content-md-end p-1 border-bottom">
+    <div class="d-flex align-items-center p-3">
+        <div class="dropdown" sec:authorize="isAuthenticated()">
+            <a href="#" class="link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" th:text="${currentUser.getEmail()} ">mekhrat.ashirbekov@ffin.kz </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" th:href="@{'/orders'}"> <i class="bi bi-card-checklist me-2"></i> Менің тапсырыстарым  </a>
+                </li>
+
+                <li>
+                    <hr class="dropdown-divider"/>
+                </li>
+
+                <li>
+                    <a class="dropdown-item dropdown-item-danger d-flex align-items-center" href="JavaScript:void(0)" onclick="document.getElementById('logoutFormId').submit()"><i class="bi bi-box-arrow-left me-2"></i>Шығу </a>
+                </li>
+                <form th:action="@{'/logout'}" method="post" id="logoutFormId" sec:authorize="isAuthenticated()"></form>
+            </ul>
+        </div>
+
+                <div sec:authorize="isAnonymous()">
+                    <a th:href="@{'/register'}" class="me-3 link-dark text-decoration-none" aria-expanded="false">Тіркелу</a>
+                    <a th:href="@{'/login'}" class="me-3 link-dark text-decoration-none" aria-expanded="false">Кіру</a>
+                </div>
+
+    </div>
+</header>
+<!-- Навбар -->
+<nav class="navbar navbar-expand-lg navbar-light p-0">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{'/home'}"><img th:src="@{'/image/smart.png'}" alt="smart"/></a>
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarScroll"
+                aria-controls="navbarScroll"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
+                <li class="nav-item dropdown">
+                    <button
+                            class="btn btn-success dropdown-toggle"
+                            id="navbarScrollingDropdown"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false" >Тауарлар</button>
+                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                        <li><a class="dropdown-item" th:href="@{'/category/smartphone'}">Смартфондар</a></li>
+                        <li><a class="dropdown-item" th:href="@{'/category/headphone'}">Құлаққапатар</a></li>
+                        <li><a class="dropdown-item" th:href="@{'/category/smartwatch'}">Смарт сағаттар</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form th:action="@{'/category/smartphone'}" method="get" class="d-flex me-auto">
+                <input class="form-control" required name="text" type="search" placeholder="Іздеу..." aria-label="Search" />
+                <button class="btn" type="submit">
+                    <i class="bi bi-search"></i>
+                </button>
+            </form>
+
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{'/favorites'}">
+                        <i class="bi bi-heart"></i>
+                        <p>Таңдаулы</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{'/cart'}">
+                        <i class="bi bi-cart3"></i>
+                        <p>Себет</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Навбар -->
