@@ -32,7 +32,7 @@ public class FavoritesController {
         Optional<User> user = userService.getUserByEmail(currentUser.getEmail());
         model.addAttribute("currentUser", currentUser);
         if (user.isPresent()) {
-            List<Item> favoriteItems = favoriteService.getFavoriteItemsByUser(user.get());
+            List<Item> favoriteItems = favoriteService.getFavoriteItemsByUser(user.get().getEmail());
             model.addAttribute("items", favoriteItems);
             return "favorites";
         }
@@ -49,13 +49,13 @@ public class FavoritesController {
         Optional<User> user = userService.getUserByEmail(userService.getCurrentUser().get().getEmail());
         Optional<Item> item = itemService.getItemById(id);
         if (user.isPresent() && item.isPresent()) {
-            Optional<Favorite> favorite = favoriteService.getFavoriteItemsByUserAndItem(user.get(), item.get());
+            Optional<Favorite> favorite = favoriteService.getFavoriteItemsByUserAndItem(user.get().getEmail(), item.get());
             if (favorite.isPresent()) {
                 return "redirect:/favorites";
             }
             Favorite newFavoriteItem = Favorite.builder()
                     .item(item.get())
-                    .user(user.get())
+                    .userEmail(user.get().getEmail())
                     .build();
             favoriteService.save(newFavoriteItem);
             return "redirect:/favorites";
@@ -73,7 +73,7 @@ public class FavoritesController {
         Optional<User> user = userService.getUserByEmail("mekhrat_ashirbekov@mail.ru");
         Optional<Item> item = itemService.getItemById(id);
         if (user.isPresent() && item.isPresent()) {
-            Optional<Favorite> favorite = favoriteService.getFavoriteItemsByUserAndItem(user.get(), item.get());
+            Optional<Favorite> favorite = favoriteService.getFavoriteItemsByUserAndItem(user.get().getEmail(), item.get());
             favorite.ifPresent(favoriteService::delete);
         }
         return "redirect:/favorites";

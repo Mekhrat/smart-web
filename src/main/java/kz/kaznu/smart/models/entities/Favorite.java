@@ -13,8 +13,7 @@ import javax.persistence.*;
 @Builder
 public class Favorite extends BaseEntity{
 
-    @ManyToOne
-    private User user;
+    private String userEmail;
 
     @ManyToOne
     private Item item;

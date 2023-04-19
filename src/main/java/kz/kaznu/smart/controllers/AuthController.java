@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -40,6 +41,7 @@ public class AuthController {
             User createdUser;
             if (user.isPresent() && !user.get().isActivated()) {
                 createdUser = user.get();
+                userService.updateLastUser(createdUser, newUser);
             }
             else if (user.isEmpty() ) {
                 createdUser = userService.createNewUser(newUser);
@@ -53,10 +55,10 @@ public class AuthController {
                 ActivateUtils.addActivateCodeForEmail(code, createdUser.getEmail());
                 String text = ActivateUtils.activateMessageText(code);
                 mailSender.send("Тіркелуді растау", text, createdUser.getEmail());
-                return "redirect:/login";
+                return "redirect:/register?success";
             }
         }
-        return "redirect:/register?error";
+        return "redirect:/register?passwordError";
 
     }
 

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Админ панель</title>
+    <meta th:insert="~{parents/links}">
+    <script th:src="@{'https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js'}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{'//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css'}">
+    <script type="text/javascript" th:src="@{'//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js'}"></script>
+</head>
+
+<div class="sticky-top" th:insert="~{admin/parents/header}"></div>
+
+<body>
+<div class="container-fluid">
+    <div class="row mb-5">
+
+        <div th:insert="~{/admin/parents/navbar}"></div>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 w-75 mt-5">
+            <div class="p-3">
+                <div class="my-orders-info d-flex justify-content-between">
+                    <h6 th:text="'Тапсырыс нөмірі: ' + ${order.getId()}"></h6>
+                    <h7 th:if="${order.getStatus().name().equals('CANCELED')}" style="color: red"
+                        th:text="'Күйі: ' + ${order.getStatus().getName()}"></h7>
+                    <h7 th:if="${order.getStatus().name().equals('IN_PROCESSING')}" style="color: cornflowerblue"
+                        th:text="'Күйі: ' + ${order.getStatus().getName()}"></h7>
+                    <h7 th:if="${order.getStatus().name().equals('DELIVERED')}" style="color: #4db84e"
+                        th:text="'Күйі: ' + ${order.getStatus().getName()}"></h7>
+                    <h7 th:if="${order.getStatus().name().equals('ISSUED_TO_THE_COURIER')}" style="color: darkcyan"
+                        th:text="'Күйі: ' + ${order.getStatus().getName()}"></h7>
+                </div>
+                <h6 th:text="'Тапсырыс берілген күні: ' + ${#temporals.format(order.getOrderDate(), 'dd.MM.yyyy hh:mm:ss')}"></h6>
+                <h6 th:text="${'Тапсырыс беруші: ' + order.getConsumerName()}"></h6>
+                <h6 th:text="${'Электрондық поштасы: ' + order.getConsumerEmail()}"></h6>
+                <h6 th:if="${!order.getConsumerIndex().isEmpty()}"
+                    th:text="'Индекс: ' + ${order.getConsumerIndex()}"></h6>
+                <h6 th:text="'Телефон: ' + ${order.getConsumerPhone()}"></h6>
+                <h6 th:text="'Мекен-жай: ' + ${order.getDeliveryAddress()}"></h6>
+                <h5 th:text="'Жалпы сомасы: ' + ${#numbers.formatInteger(order.getTotal(),3,'DEFAULT')} + ' ₸'"></h5>
+            </div>
+
+            <div th:each="item : ${order.getItems()}" class="my-order">
+                <div class="order-image">
+                    <a th:each="photo : ${item.getPhotos()}" th:if="${photo.isMain()}"
+                       th:href="@{'/admin/items/' + ${item.getId()}}"><img
+                            th:src="@{'/photos/' + ${photo.getPhotoName()}}"
+                            alt=""/></a>
+                </div>
+
+                <div class="order-info">
+                    <div class="order-item-name mt-3">
+                        <a th:text="${item.getFullName()}"
+                           th:href="@{'/admin/items/' + ${item.getId()}}">Смартфон
+                            Apple iPhone 13 128Gb Сsdfs артфон Apple iPhone 13 артфон Apple iPhone 13</a>
+                    </div>
+                    <hr/>
+
+                    <div class="order-item-price d-flex justify-content-md-end mt-5">
+                        <small th:if="${item.getLastPrice() != null}"
+                               th:text="${#numbers.formatInteger(item.getLastPrice(),3,'DEFAULT')} + ' ₸'"></small>
+                        [[${#numbers.formatInteger(item.getNewPrice(),3,'DEFAULT')} + ' ₸']]
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-3 row">
+                <form th:unless="${order.getStatus().name().equals('DELIVERED')}" class="col-md-4" th:action="@{'/admin/orders'}" th:method="DELETE">
+                    <input type="hidden" name="orderId" th:value="${order.getId()}">
+                    <button class="btn btn-danger">Тапсырысты жою</button>
+                </form>
+
+                <form th:if="${order.getStatus().name().equals('IN_PROCESSING')}" class="col-md-6 d-flex offset-2 justify-content-between" th:action="@{'/admin/orders/toCourier'}" th:method="POST">
+                    <input type="hidden" name="orderId" th:value="${order.getId()}">
+                    <select class="form-select" name="courier" aria-label="Курьерді таңдаңыз">
+                        <option th:each="courier : ${couriers}" th:value="${courier.getEmail()}" th:text="${courier.getEmail()}"></option>
+                    </select>
+                    <button class="btn btn-success w-50 ms-1">Курьерге беру</button>
+                </form>
+
+                <form th:if="${order.getStatus().name().equals('ISSUED_TO_THE_COURIER')}" class="col-md-3 offset-5" th:action="@{'/admin/orders/toInProgress'}" th:method="POST">
+                    <input type="hidden" name="orderId" th:value="${order.getId()}">
+                    <button class="btn btn-primary w-75 ms-1">Курьерден алу</button>
+                </form>
+            </div>
+        </main>
+    </div>
+</div>
+
+
+<script src="/docs/5.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+        integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+        integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
+        crossorigin="anonymous"></script>
+<script src="dashboard.js"></script>
+
+
+</body>
+</html>

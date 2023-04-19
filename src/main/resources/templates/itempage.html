@@ -46,13 +46,13 @@
                             <div th:each="photo : ${item.getPhotos()}" class="carousel-item" th:if="${photo.isMain()}"
                                  th:attrappend="class=${' active'}">
                                 <img
-                                        th:src="@{'/images/smartphones/' + ${photo.getPhotoName()} + '.jpg'}"
+                                        th:src="@{'/photos/' + ${photo.getPhotoName()}}"
                                         class="d-block w-100"
                                         alt="..."/>
                             </div>
                             <div th:each="photo : ${item.getPhotos()}" class="carousel-item"
                                  th:unless="${photo.isMain()}">
-                                <img th:src="@{'/images/smartphones/' + ${photo.getPhotoName()} + '.jpg'}"
+                                <img th:src="@{'/photos/' + ${photo.getPhotoName()}}"
                                      class="d-block w-100"
                                      alt="..."/>
                             </div>
@@ -179,7 +179,7 @@
                 <div class="product-card-top">
                     <div class="product-thumb-top">
                         <a th:each="photo : ${item.getPhotos()}" th:if="${photo.isMain()}" th:href="@{'/category/' + ${item.getItemType().name().toLowerCase()} + '/' + ${item.getFullName()}}"><img
-                                th:src="@{'/images/smartphones/' + ${photo.getPhotoName()} + '.jpg'}"
+                                th:src="@{'/photos/' + ${photo.getPhotoName()}}"
                                 alt=""/></a>
                     </div>
                     <div class="product-details-top">
@@ -214,55 +214,55 @@
         <!-- REC -->
 
         <!-- Comment -->
-        <div class="row comment justify-content-center">
-            <div class="col-md-9">
-                <h4>Коментарийлер</h4>
-                <div class="comment-body">
-                    <div class="comment-author">
-                        mekhrat.ashirbekov@ffin.kz
-                    </div>
-                    <div class="comment-date">
-                        2022-08-08
-                    </div>
-                    <div class="comment-text">
-                        Маған ұнамады. Өйткені телефонды өзіме емес келіншегіме алып бергем. Өзіме алған болсам ұнаған
-                        болар еді.
-                    </div>
-                </div>
+<!--        <div class="row comment justify-content-center">-->
+<!--            <div class="col-md-9">-->
+<!--                <h4>Коментарийлер</h4>-->
+<!--                <div class="comment-body">-->
+<!--                    <div class="comment-author">-->
+<!--                        mekhrat.ashirbekov@ffin.kz-->
+<!--                    </div>-->
+<!--                    <div class="comment-date">-->
+<!--                        2022-08-08-->
+<!--                    </div>-->
+<!--                    <div class="comment-text">-->
+<!--                        Маған ұнамады. Өйткені телефонды өзіме емес келіншегіме алып бергем. Өзіме алған болсам ұнаған-->
+<!--                        болар еді.-->
+<!--                    </div>-->
+<!--                </div>-->
 
-                <div class="comment-body">
-                    <div class="comment-author">
-                        mekhrat.ashirbekov@ffin.kz
-                    </div>
-                    <div class="comment-date">
-                        2022-08-08
-                    </div>
-                    <div class="comment-text">
-                        Маған ұнамады. Өйткені телефонды өзіме емес келіншегіме алып бергем. Өзіме алған болсам ұнаған
-                        болар еді.
-                    </div>
-                </div>
+<!--                <div class="comment-body">-->
+<!--                    <div class="comment-author">-->
+<!--                        mekhrat.ashirbekov@ffin.kz-->
+<!--                    </div>-->
+<!--                    <div class="comment-date">-->
+<!--                        2022-08-08-->
+<!--                    </div>-->
+<!--                    <div class="comment-text">-->
+<!--                        Маған ұнамады. Өйткені телефонды өзіме емес келіншегіме алып бергем. Өзіме алған болсам ұнаған-->
+<!--                        болар еді.-->
+<!--                    </div>-->
+<!--                </div>-->
 
-                <div class="comment-body">
-                    <div class="comment-author">
-                        mekhrat.ashirbekov@ffin.kz
-                    </div>
-                    <div class="comment-date">
-                        2022-08-08
-                    </div>
-                    <div class="comment-text">
-                        Маған ұнамады. Өйткені телефонды өзіме емес келіншегіме алып бергем. Өзіме алған болсам ұнаған
-                        болар еді.
-                    </div>
-                </div>
+<!--                <div class="comment-body">-->
+<!--                    <div class="comment-author">-->
+<!--                        mekhrat.ashirbekov@ffin.kz-->
+<!--                    </div>-->
+<!--                    <div class="comment-date">-->
+<!--                        2022-08-08-->
+<!--                    </div>-->
+<!--                    <div class="comment-text">-->
+<!--                        Маған ұнамады. Өйткені телефонды өзіме емес келіншегіме алып бергем. Өзіме алған болсам ұнаған-->
+<!--                        болар еді.-->
+<!--                    </div>-->
+<!--                </div>-->
 
-                <form action="">
-                    <textarea class="form-control" placeholder="Коментарий қалдыру..." id="exampleFormControlTextarea1"
-                              rows="9"></textarea>
-                    <button class="btn btn-outline-success float-end mt-2 ">Жіберу</button>
-                </form>
-            </div>
-        </div>
+<!--                <form action="">-->
+<!--                    <textarea class="form-control" placeholder="Коментарий қалдыру..." id="exampleFormControlTextarea1"-->
+<!--                              rows="9"></textarea>-->
+<!--                    <button class="btn btn-outline-success float-end mt-2 ">Жіберу</button>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
         <!-- Comment -->
 
     </div>

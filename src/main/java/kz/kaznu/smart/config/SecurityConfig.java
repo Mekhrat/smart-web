@@ -28,6 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests().antMatchers( "/css/**", "/js/**", "/images/**", "/image/**").permitAll()
                 .antMatchers("/favorites", "/orders").authenticated()
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().permitAll();
 
        http.formLogin()
@@ -35,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                .usernameParameter("email")
                .passwordParameter("password")
                .loginProcessingUrl("/auth").permitAll()
-               .failureUrl("/login?error")
+               .failureUrl("/login?loginError")
                .defaultSuccessUrl("/home");
 
        http.logout()

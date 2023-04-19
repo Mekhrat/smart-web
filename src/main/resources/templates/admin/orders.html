@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Админ панель</title>
+    <meta th:insert="~{parents/links}">
+    <script th:src="@{'https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js'}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{'//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css'}">
+    <script type="text/javascript" th:src="@{'//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js'}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#newOrders').dataTable( {
+                "language": {
+                    "lengthMenu":"Жол саны _MENU_",
+                    "search":"Іздеу:",
+                    "zeroRecords":"Тауарлар табылмады",
+                    "paginate": {
+                        "first":"Алғашқы",
+                        "last":"Соңғы",
+                        "next":"Келесі",
+                        "previous":"Алдыңғы"
+                    },
+                    "loadingRecords": "Жүктелуде...",
+                    "emptyTable":"Тауарлар табылмады",
+                    "info":" ",
+                    "infoEmpty":" ",
+                    "infoFiltered":   "",
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#issuedToTheCourier').dataTable( {
+                "language": {
+                    "lengthMenu":"Жол саны _MENU_",
+                    "search":"Іздеу:",
+                    "zeroRecords":"Тауарлар табылмады",
+                    "paginate": {
+                        "first":"Алғашқы",
+                        "last":"Соңғы",
+                        "next":"Келесі",
+                        "previous":"Алдыңғы"
+                    },
+                    "loadingRecords": "Жүктелуде...",
+                    "emptyTable":"Тауарлар табылмады",
+                    "info":" ",
+                    "infoEmpty":" ",
+                    "infoFiltered":   "",
+                }
+            });
+        });
+    </script>
+</head>
+
+<div class="sticky-top" th:insert="~{admin/parents/header}"></div>
+
+<body>
+<div class="container-fluid">
+    <div class="row">
+
+        <div th:insert="~{/admin/parents/navbar}"></div>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mb-3">
+            <div class="chartjs-size-monitor">
+                <div class="chartjs-size-monitor-expand">
+                    <div class=""></div>
+                </div>
+                <div class="chartjs-size-monitor-shrink">
+                    <div class=""></div>
+                </div>
+            </div>
+
+            <h4 class="mt-4">Жаңадан түскен тапсырыстар</h4>
+            <div class="table-responsive">
+                <table id="newOrders" class="table table-striped table-sm table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Аты-жөні</th>
+                        <th scope="col">Пошта</th>
+                        <th scope="col">Телефон</th>
+                        <th scope="col">Уақыты</th>
+                        <th scope="col">Индекс</th>
+                        <th scope="col">Сомасы</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="order : ${newOrders}">
+                        <td><a class="text-decoration-none text-body" th:text="${order.getId()}"
+                               th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
+                        <td><a class="text-decoration-none text-body" th:text="${order.getConsumerName()}"
+                               th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
+                        <td><a class="text-decoration-none text-body" th:text="${order.getConsumerEmail()}"
+                               th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
+                        <td><a class="text-decoration-none text-body" th:text="${order.getConsumerPhone()}"
+                               th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
+                        <td><a class="text-decoration-none text-body"
+                               th:text="${#temporals.format(order.getOrderDate(), 'dd.MM.yyyy hh:mm:ss')}"
+                               th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
+                        <td><a class="text-decoration-none text-body" th:text="${order.getConsumerIndex()}"
+                               th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
+                        <td><a class="text-decoration-none text-body"
+                               th:text="${#numbers.formatInteger(order.getTotal(),3,'DEFAULT')} + ' ₸'"
+                               th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <h4 class="mt-4">Курьерге берілген тапсырыстар</h4>
+            <div class="table-responsive">
+                <table id="issuedToTheCourier" class="table table-striped table-sm table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Аты-жөні</th>
+                        <th scope="col">Пошта</th>
+                        <th scope="col">Телефон</th>
+                        <th scope="col">Индекс</th>
+                        <th scope="col">Сомасы</th>
+                        <th scope="col">Курьер</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="order : ${issuedToTheCourier}">
+                        <td><a class="text-decoration-none text-body" th:text="${order.getId()}"
+                               th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
+                        <td><a class="text-decoration-none text-body" th:text="${order.getConsumerName()}"
+                               th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
+                        <td><a class="text-decoration-none text-body" th:text="${order.getConsumerEmail()}"
+                               th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
+                        <td><a class="text-decoration-none text-body" th:text="${order.getConsumerPhone()}"
+                               th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
+                        <td><a class="text-decoration-none text-body" th:text="${order.getConsumerIndex()}"
+                               th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
+                        <td><a class="text-decoration-none text-body"
+                               th:text="${#numbers.formatInteger(order.getTotal(),3,'DEFAULT')} + ' ₸'"
+                               th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
+                        <td><a class="text-decoration-none text-body" th:text="${order.getCourierEmail()}"
+                               th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</div>
+
+
+<script src="/docs/5.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+        integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+        integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
+        crossorigin="anonymous"></script>
+<script src="dashboard.js"></script>
+
+
+</body>
+</html>

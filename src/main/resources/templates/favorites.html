@@ -9,6 +9,7 @@
     <title>Товарлар</title>
 </head>
 <div th:insert="~{parents/header}"></div>
+
 <body>
 <!-- Товары -->
 <section class="main-content">
@@ -19,7 +20,7 @@
                 <div class="product-card">
                     <div class="product-thumb">
                         <a th:each="photo : ${item.getPhotos()}" th:if="${photo.isMain()}" th:href="@{'/category/' + ${item.getItemType().name().toLowerCase()} + '/' + ${item.getFullName()}}"><img
-                                th:src="@{'/images/smartphones/' + ${photo.getPhotoName()} + '.jpg'}"
+                                th:src="@{'/photos/' + ${photo.getPhotoName()}}"
                                 alt=""/></a>
                     </div>
                     <div class="product-details">

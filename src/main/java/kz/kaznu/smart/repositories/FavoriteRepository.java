@@ -15,9 +15,9 @@ import java.util.Optional;
 @Transactional
 public interface FavoriteRepository extends JpaRepository<Favorite, Long> {
 
-    @Query("select f.item from Favorite f where f.user = ?1")
-    List<Item> getFavoritesByUser(User user);
+    @Query("select f.item from Favorite f where f.userEmail = ?1")
+    List<Item> getFavoritesByUser(String userEmail);
 
-    @Query("select f from Favorite f where f.user = :user and f.item = :item")
-    Optional<Favorite> getByUserAndItem(User user, Item item);
+    @Query("select f from Favorite f where f.userEmail = :userEmail and f.item = :item")
+    Optional<Favorite> getByUserAndItem(String userEmail, Item item);
 }

@@ -17,13 +17,13 @@ public class FavoriteServiceImpl implements FavoriteService {
     private final FavoriteRepository favoriteRepository;
 
     @Override
-    public List<Item> getFavoriteItemsByUser(User user) {
-        return favoriteRepository.getFavoritesByUser(user);
+    public List<Item> getFavoriteItemsByUser(String userEmail) {
+        return favoriteRepository.getFavoritesByUser(userEmail);
     }
 
     @Override
-    public Optional<Favorite> getFavoriteItemsByUserAndItem(User user, Item item) {
-        return favoriteRepository.getByUserAndItem(user, item);
+    public Optional<Favorite> getFavoriteItemsByUserAndItem(String userEmail, Item item) {
+        return favoriteRepository.getByUserAndItem(userEmail, item);
     }
 
     @Override

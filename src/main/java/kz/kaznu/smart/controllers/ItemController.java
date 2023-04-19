@@ -126,4 +126,10 @@ public class ItemController {
 
         return "search";
     }
+
+
+    @GetMapping(value = "/admin/items/{id}")
+    public String admin(@PathVariable(name = "id") Long id) {
+        return "admin/itemPage";
+    }
 }

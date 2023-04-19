@@ -8,6 +8,10 @@
                 </li>
 
                 <li>
+                    <a sec:authorize="hasRole('ADMIN')" class="dropdown-item d-flex align-items-center" th:href="@{'/admin/orders'}"> <i class="bi bi-people me-2"></i> Админ  </a>
+                </li>
+
+                <li>
                     <hr class="dropdown-divider"/>
                 </li>
 
@@ -28,7 +32,8 @@
 <!-- Навбар -->
 <nav class="navbar navbar-expand-lg navbar-light p-0">
     <div class="container">
-        <a class="navbar-brand" th:href="@{'/home'}"><img th:src="@{'/image/smart.png'}" alt="smart"/></a>
+<!--        <a class="navbar-brand" th:href="@{'/home'}"><img th:src="@{'https://1000logos.net/wp-content/uploads/2020/04/Smart-Logo-1998.png'}" alt="smart"/></a>-->
+        <a class="navbar-brand" th:href="@{'/home'}"><img th:src="@{'/image/Smart-Logo-1998.png'}" alt="smart"/></a>
         <button
                 class="navbar-toggler"
                 type="button"

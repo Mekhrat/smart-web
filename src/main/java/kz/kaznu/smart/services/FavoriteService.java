@@ -9,8 +9,8 @@ import java.util.Optional;
 
 public interface FavoriteService {
 
-    List<Item> getFavoriteItemsByUser(User user);
-    Optional<Favorite> getFavoriteItemsByUserAndItem(User user, Item item);
+    List<Item> getFavoriteItemsByUser(String userEmail);
+    Optional<Favorite> getFavoriteItemsByUserAndItem(String userEmail, Item item);
     Favorite save(Favorite favorite);
     void delete(Favorite favorite);
 

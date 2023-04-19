@@ -99,7 +99,7 @@
                 <div class="product-card-top">
                     <div class="product-thumb-top">
                         <a th:each="photo : ${item.getPhotos()}" th:if="${photo.isMain()}" th:href="@{'/category/' + ${item.getItemType().name().toLowerCase()} + '/' + ${item.getFullName()}}"><img
-                                th:src="@{'/images/smartphones/' + ${photo.getPhotoName()} + '.jpg'}"
+                                th:src="@{'/photos/' + ${photo.getPhotoName()}}"
                                 alt=""/></a>
                     </div>
                     <div class="product-details-top">
@@ -207,7 +207,7 @@
                 <div class="product-card-top">
                     <div class="product-thumb-top">
                         <a th:each="photo : ${item.getPhotos()}" th:if="${photo.isMain()}" th:href="@{'/category/' + ${item.getItemType().name().toLowerCase()} + '/' + ${item.getFullName()}}"><img
-                                th:src="@{'/images/smartphones/' + ${photo.getPhotoName()} + '.jpg'}"
+                                th:src="@{'/photos/' + ${photo.getPhotoName()}}"
                                 alt=""/></a>
                     </div>
                     <div class="product-details-top">
@@ -332,7 +332,7 @@
                 <div class="product-card-top">
                     <div class="product-thumb-top">
                         <a th:each="photo : ${item.getPhotos()}" th:if="${photo.isMain()}" th:href="@{'/category/' + ${item.getItemType().name().toLowerCase()} + '/' + ${item.getFullName()}}"><img
-                                th:src="@{'/images/smartphones/' + ${photo.getPhotoName()} + '.jpg'}"
+                                th:src="@{'/photos/' + ${photo.getPhotoName()}}"
                                 alt=""/></a>
                     </div>
                     <div class="product-details-top">
