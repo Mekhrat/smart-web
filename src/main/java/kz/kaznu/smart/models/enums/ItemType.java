@@ -6,5 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum ItemType {
-    SMARTPHONE, SMARTWATCH, HEADPHONE;
+    SMARTPHONE("Смартфон"), SMARTWATCH("Смарт сағат"), HEADPHONE("Құлаққап");
+
+    private final String value;
 }

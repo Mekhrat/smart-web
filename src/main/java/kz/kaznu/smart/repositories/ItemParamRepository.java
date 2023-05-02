@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @Transactional
@@ -24,4 +25,6 @@ public interface ItemParamRepository extends JpaRepository<ItemParam, Long> {
 
     @Query("select i from ItemParam i where i.item = ?1 and i.orderValue in ?2")
     List<ItemParam> getItemParamsByOrderValue(Item item, List<Integer> orderValue);
+
+    Optional<ItemParam> getFirstById(Long paramId);
 }

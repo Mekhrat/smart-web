@@ -1,5 +1,6 @@
 package kz.kaznu.smart.services;
 
+import kz.kaznu.smart.models.dto.EmployeeInfo;
 import kz.kaznu.smart.models.dto.NewUserDto;
 import kz.kaznu.smart.models.entities.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,4 +20,10 @@ public interface UserService extends UserDetailsService {
     List<User> getAllCouriers();
 
     List<User> getEmployees();
+
+    Optional<User> getById(Long id);
+
+    void delete(User user);
+
+    User createNewEmployee(EmployeeInfo employeeInfo);
 }

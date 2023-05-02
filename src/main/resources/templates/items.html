@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta th:insert="~{parents/links}">
-    <title>Товарлар</title>
+    <title>Тауарлар</title>
 </head>
 <div th:insert="~{parents/header}"></div>
 <body>
@@ -49,20 +49,13 @@
         </form>
 
 
-        <div th:if="${items.getTotalPages() > 0}" class="row justify-content-between mt-5">
-            <div class="col-md-3">
-                <h3>Табылған тауарлар</h3>
+        <div class="row justify-content-center mt-5">
+            <div th:if="${items.getTotalPages() > 0}" class="col-md-3">
+                <h4>Табылған тауарлар</h4>
             </div>
-            <div class="col-md-2">
-                <select class="form-select" name="brand" id="color">
-                    <option value="0" selected><a href="#">Жаңалар</a></option>
-                    <option value="1"><a href="#">Бағаның өсуі</a></option>
-                    <option value="2"><a href="#">Бағаның кемуі</a></option>
-                </select>
+            <div class="col-md-3" th:unless="${items.getTotalPages() > 0}">
+                <h5>Тауарлар табылмады</h5>
             </div>
-        </div>
-        <div class="ms-5 p-3 mt-4" th:unless="${items.getTotalPages() > 0}">
-            <h4>Тауарлар табылмады</h4>
         </div>
     </div>
 </section>

@@ -78,4 +78,9 @@ public class AuthController {
         return "redirect:/login?error";
     }
 
+    @GetMapping(value = "/403")
+    public String accessDenied() {
+        return "403";
+    }
+
 }

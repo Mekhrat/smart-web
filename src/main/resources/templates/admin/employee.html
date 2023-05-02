@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Админ панель</title>
+    <meta th:insert="~{parents/links}">
+    <script th:src="@{'https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js'}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{'//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css'}">
+    <script type="text/javascript" th:src="@{'//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js'}"></script>
+</head>
+
+<div class="sticky-top" th:insert="~{admin/parents/header}"></div>
+
+<body>
+<div class="container-fluid">
+    <div class="row">
+
+        <div th:insert="~{/admin/parents/navbar}"></div>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mt-5 mb-4">
+            <div class="row ms-5">
+                <div class="col-md-9">
+                    <div th:if="${param.success != null}" class="alert alert-success" role="alert">
+                        Қызметкер сәтті қосылды
+                    </div>
+
+                    <div th:if="${param.error != null}" class="alert alert-danger" role="alert">
+                        Бұл электронды пошта тіркеліп қойылған. Басқа пошта енгізіңіз
+                    </div>
+                </div>
+            </div>
+            <form class="ms-5" th:action="@{'/admin/employee'}" method="post" th:object="${employeeInfo}">
+                <div class="row mt-2">
+                    <div class="col-md-9">
+                        <label>Аты-жөні:</label>
+                        <input type="text" th:field="*{name}" required placeholder="Аты-жөні" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-md-4">
+                        <label>Рөлі:</label>
+                        <select th:field="*{role}" th:placeholder="Рөлі" class="form-control">
+                            <option value="ROLE_COURIER">Курьер</option>
+                            <option value="ROLE_ADMIN">Админ</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-md-5">
+                        <label>Email:</label>
+                        <input type="email" required th:field="*{email}" placeholder="Email" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Құпия сөз:</label>
+                        <input type="password" required th:field="*{password}" placeholder="Құпия сөз" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-md-5">
+                        <label>Телефон нөмірі:</label>
+                        <input type="number" required th:field="*{phone}" placeholder="Телефон нөмірі" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-md-9">
+                        <label>Мекен жайы:</label>
+                        <textarea th:field="*{address}" required rows="3" placeholder="Мекен жайы" class="form-control"></textarea>
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-md-2 offset-7">
+                       <button class="btn btn-outline-success w-100">Қосу</button>
+                    </div>
+                </div>
+
+            </form>
+        </main>
+    </div>
+</div>
+
+<script src="/docs/5.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+        integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+        integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
+        crossorigin="anonymous"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>

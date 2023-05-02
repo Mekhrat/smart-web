@@ -72,9 +72,13 @@
                 </div>
             </div>
 
-            <h4 class="mt-4">Жаңадан түскен тапсырыстар</h4>
+            <div class="row justify-content-md-center">
+                <div class="col-md-auto">
+                    <h5 class="mt-4">Жаңадан түскен тапсырыстар</h5>
+                </div>
+            </div>
             <div class="table-responsive">
-                <table id="newOrders" class="table table-striped table-sm table-hover">
+                <table id="newOrders" class="table table-sm table-hover">
                     <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -88,20 +92,20 @@
                     </thead>
                     <tbody>
                     <tr th:each="order : ${newOrders}">
-                        <td><a class="text-decoration-none text-body" th:text="${order.getId()}"
+                        <td class="align-middle"><a class="text-decoration-none text-body" th:text="${order.getId()}"
                                th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
-                        <td><a class="text-decoration-none text-body" th:text="${order.getConsumerName()}"
+                        <td class="align-middle"><a class="text-decoration-none text-body" th:text="${order.getConsumerName()}"
                                th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
-                        <td><a class="text-decoration-none text-body" th:text="${order.getConsumerEmail()}"
+                        <td class="align-middle"><a class="text-decoration-none text-body" th:text="${order.getConsumerEmail()}"
                                th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
-                        <td><a class="text-decoration-none text-body" th:text="${order.getConsumerPhone()}"
+                        <td class="align-middle"><a class="text-decoration-none text-body" th:text="${order.getConsumerPhone()}"
                                th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
-                        <td><a class="text-decoration-none text-body"
-                               th:text="${#temporals.format(order.getOrderDate(), 'dd.MM.yyyy hh:mm:ss')}"
+                        <td class="align-middle"><a class="text-decoration-none text-body"
+                               th:text="${#temporals.format(order.getOrderDate(), 'dd.MM.yyyy HH:mm:ss')}"
                                th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
-                        <td><a class="text-decoration-none text-body" th:text="${order.getConsumerIndex()}"
+                        <td class="align-middle"><a class="text-decoration-none text-body" th:text="${order.getConsumerIndex()}"
                                th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
-                        <td><a class="text-decoration-none text-body"
+                        <td class="align-middle"><a class="text-decoration-none text-body"
                                th:text="${#numbers.formatInteger(order.getTotal(),3,'DEFAULT')} + ' ₸'"
                                th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
                     </tr>
@@ -109,10 +113,13 @@
                 </table>
             </div>
 
-
-            <h4 class="mt-4">Курьерге берілген тапсырыстар</h4>
+            <div class="row justify-content-md-center">
+                <div class="col-md-auto">
+                    <h5 class="mt-4">Курьерге берілген тапсырыстар</h5>
+                </div>
+            </div>
             <div class="table-responsive">
-                <table id="issuedToTheCourier" class="table table-striped table-sm table-hover">
+                <table id="issuedToTheCourier" class="table table-sm table-hover">
                     <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -126,20 +133,20 @@
                     </thead>
                     <tbody>
                     <tr th:each="order : ${issuedToTheCourier}">
-                        <td><a class="text-decoration-none text-body" th:text="${order.getId()}"
+                        <td class="align-middle"><a class="text-decoration-none text-body" th:text="${order.getId()}"
                                th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
-                        <td><a class="text-decoration-none text-body" th:text="${order.getConsumerName()}"
+                        <td class="align-middle"><a class="text-decoration-none text-body" th:text="${order.getConsumerName()}"
                                th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
-                        <td><a class="text-decoration-none text-body" th:text="${order.getConsumerEmail()}"
+                        <td class="align-middle"><a class="text-decoration-none text-body" th:text="${order.getConsumerEmail()}"
                                th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
-                        <td><a class="text-decoration-none text-body" th:text="${order.getConsumerPhone()}"
+                        <td class="align-middle"><a class="text-decoration-none text-body" th:text="${order.getConsumerPhone()}"
                                th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
-                        <td><a class="text-decoration-none text-body" th:text="${order.getConsumerIndex()}"
+                        <td class="align-middle"><a class="text-decoration-none text-body" th:text="${order.getConsumerIndex()}"
                                th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
-                        <td><a class="text-decoration-none text-body"
+                        <td class="align-middle"><a class="text-decoration-none text-body"
                                th:text="${#numbers.formatInteger(order.getTotal(),3,'DEFAULT')} + ' ₸'"
                                th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
-                        <td><a class="text-decoration-none text-body" th:text="${order.getCourierEmail()}"
+                        <td class="align-middle"><a class="text-decoration-none text-body" th:text="${order.getCourierEmail()}"
                                th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
 
                     </tr>

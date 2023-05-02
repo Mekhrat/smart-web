@@ -70,4 +70,10 @@ public class CartController {
         response.addCookie(Utils.createNewCookie("cart", newCookieValue));
         return "redirect:/cart";
     }
+
+    @PostMapping("/paybox")
+    public String paybox(@ModelAttribute("consumerInfo") ConsumerInfo consumerInfo) {
+        System.out.println(consumerInfo);
+        return "";
+    }
 }

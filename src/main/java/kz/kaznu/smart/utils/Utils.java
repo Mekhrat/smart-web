@@ -1,5 +1,8 @@
 package kz.kaznu.smart.utils;
 
+import kz.kaznu.smart.models.dto.ItemInfo;
+import kz.kaznu.smart.models.entities.Item;
+
 import javax.servlet.http.Cookie;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,5 +27,18 @@ public class Utils {
         Cookie cookie = new Cookie(name, value);
         cookie.setMaxAge(60 * 60);
         return cookie;
+    }
+
+    public static ItemInfo item2ItemInfo(Item item) {
+        return ItemInfo.builder()
+                .name(item.getName())
+                .fullName(item.getFullName())
+                .lastPrice(item.getLastPrice())
+                .price(item.getNewPrice())
+                .id(item.getId())
+                .quantity(item.getQuantity())
+                .brand(item.getBrand().name())
+                .type(item.getItemType().name())
+                .build();
     }
 }

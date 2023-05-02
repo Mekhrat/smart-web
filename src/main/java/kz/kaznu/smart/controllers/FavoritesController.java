@@ -78,4 +78,7 @@ public class FavoritesController {
         }
         return "redirect:/favorites";
     }
+
+
+
 }

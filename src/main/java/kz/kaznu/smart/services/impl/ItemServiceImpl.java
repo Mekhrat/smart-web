@@ -1,5 +1,6 @@
 package kz.kaznu.smart.services.impl;
 
+import kz.kaznu.smart.models.dto.ItemInfo;
 import kz.kaznu.smart.models.dto.ItemParamsDto;
 import kz.kaznu.smart.models.entities.Item;
 import kz.kaznu.smart.models.entities.ItemParam;
@@ -19,8 +20,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.*;
-
 
 
 @Service
@@ -45,7 +46,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public Page<Item> search(ItemType type ,Integer price1, Integer price2, String brand, String color, Integer page, Integer size) {
+    public Page<Item> search(ItemType type, Integer price1, Integer price2, String brand, String color, Integer page, Integer size) {
         List<Brand> brands = SearchUtils.getBrandByName(brand);
         List<String> colors = SearchUtils.getColorByName(color);
 
@@ -55,6 +56,39 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public Page<Item> search(String text, int page, int size) {
         return itemRepository.search(text.toLowerCase(Locale.ROOT), PageRequest.of(page, size));
+    }
+
+    @Override
+    public List<Item> getAll() {
+        return itemRepository.findAll();
+    }
+
+    @Override
+    public Item save(ItemInfo itemInfo) {
+        Item item = itemRepository.getItemById(itemInfo.getId()).orElse(
+                Item.builder()
+                        .createTime(LocalDateTime.now())
+                        .build()
+        );
+        item.setName(itemInfo.getName());
+        item.setFullName(itemInfo.getFullName());
+        item.setLastPrice(itemInfo.getLastPrice());
+        item.setNewPrice(itemInfo.getPrice());
+        item.setUpdateTime(LocalDateTime.now());
+        item.setQuantity(itemInfo.getQuantity());
+        item.setBrand(Brand.valueOf(itemInfo.getBrand()));
+        item.setItemType(ItemType.valueOf(itemInfo.getType()));
+        return itemRepository.save(item);
+    }
+
+    @Override
+    public Item save(Item item) {
+        return itemRepository.save(item);
+    }
+
+    @Override
+    public void delete(Item item) {
+        itemRepository.delete(item);
     }
 }
 

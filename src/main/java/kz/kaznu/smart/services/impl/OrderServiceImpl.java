@@ -6,6 +6,7 @@ import kz.kaznu.smart.models.entities.Order;
 import kz.kaznu.smart.models.entities.User;
 import kz.kaznu.smart.models.enums.OrderStatus;
 import kz.kaznu.smart.repositories.OrderRepository;
+import kz.kaznu.smart.services.ItemService;
 import kz.kaznu.smart.services.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,10 +19,15 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
+    private final ItemService itemService;
 
     @Override
     public Order createNewOrder(User user, ConsumerInfo consumerInfo, List<Item> items) {
         Integer total = items.stream().map(Item::getNewPrice).reduce(Integer::sum).orElse(0);
+        items.forEach(item -> {
+            item.setQuantity(item.getQuantity() - 1);
+            itemService.save(item);
+        });
         Order order = Order.builder()
                 .orderDate(LocalDateTime.now())
                 .consumerEmail(user.getEmail())
@@ -46,6 +52,10 @@ public class OrderServiceImpl implements OrderService {
         Optional<Order> opOrder = orderRepository.findById(orderId);
         if (opOrder.isPresent()) {
             Order order = opOrder.get();
+            order.getItems().forEach(item -> {
+                item.setQuantity(item.getQuantity() + 1);
+                itemService.save(item);
+            });
             order.setStatus(OrderStatus.CANCELED);
             orderRepository.save(order);
         }

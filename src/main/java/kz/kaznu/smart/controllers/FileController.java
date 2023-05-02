@@ -16,10 +16,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
@@ -56,7 +53,10 @@ public class FileController {
         if (photo.getContentType().equals("image/jpeg") || photo.getContentType().equals("image/png")) {
             try {
                 byte[] bytes = photo.getBytes();
-                String fileName = UUID.nameUUIDFromBytes(bytes).toString();
+                String fileName = photo.getOriginalFilename().replace(".jpg","").replace(".png","");
+                if (new File(PHOTO_PATH + fileName + ".jpg").exists()) {
+                    fileName = fileName + new Random().nextInt(1000);
+                }
                 Path path = Paths.get(PHOTO_PATH + fileName + ".jpg");
                 Files.write(path, bytes);
             }

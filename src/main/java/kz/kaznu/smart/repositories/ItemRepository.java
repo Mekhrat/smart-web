@@ -18,7 +18,7 @@ import java.util.Optional;
 @Repository
 @Transactional
 public interface ItemRepository extends JpaRepository<Item, Long> {
-    @Query("select i from Item i where i.name like ?1")
+    @Query("select i from Item i where i.name like ?1 and i.quantity > 0")
     List<Item> getItemsByName(String name);
 
     @Query("select i from Item i where upper(i.fullName) like upper(?1)")
@@ -30,7 +30,7 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     @Query("select i from Item i")
     List<Item> getItems(Pageable pageable);
 
-    @Query("select i from Item i where i.itemType = ?1")
+    @Query("select i from Item i where i.itemType = ?1 and i.quantity > 0")
     Page<Item> getItemsByType(ItemType type, Pageable pageable);
 
     @Query("select i from Item i join ItemParam ip on i = ip.item " +
@@ -38,13 +38,13 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
             "and i.itemType = :type " +
             "and i.newPrice < :price2 " +
             "and i.brand in (:brands) " +
-            "and (ip.param.name = 'COLOR' and ip.value in (:colors))")
+            "and (ip.param.name = 'COLOR' and ip.value in (:colors)) and i.quantity > 0")
     Page<Item> search(ItemType type ,Integer price1, Integer price2, List<Brand> brands, List<String> colors, Pageable pageable);
 
     @Query("select distinct(i) from Item i join ItemParam ip on i = ip.item " +
             "where lower(i.fullName) like %:text% " +
             "or lower(i.brand) like %:text% " +
             "or lower(i.itemType) like %:text% " +
-            "or (ip.param.name = 'COLOR' and lower(ip.value) like %:text%)")
+            "or (ip.param.name = 'COLOR' and lower(ip.value) like %:text%) and i.quantity > 0")
     Page<Item> search(String text, Pageable pageable);
 }

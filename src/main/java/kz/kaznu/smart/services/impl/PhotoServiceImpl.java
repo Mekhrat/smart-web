@@ -1,5 +1,6 @@
 package kz.kaznu.smart.services.impl;
 
+import kz.kaznu.smart.models.entities.Item;
 import kz.kaznu.smart.models.entities.Photo;
 import kz.kaznu.smart.repositories.PhotoRepository;
 import kz.kaznu.smart.services.PhotoService;
@@ -23,5 +24,15 @@ public class PhotoServiceImpl implements PhotoService {
     @Override
     public void delete(Photo photo) {
         photoRepository.delete(photo);
+    }
+
+    @Override
+    public Photo save(Photo photo) {
+        return photoRepository.save(photo);
+    }
+
+    @Override
+    public Optional<Photo> getByItemAndPhotoName(Item item, String photoName) {
+        return photoRepository.getFirstByItemAndPhotoName(item, photoName);
     }
 }

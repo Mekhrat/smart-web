@@ -3,9 +3,11 @@ package kz.kaznu.smart.services.impl;
 import kz.kaznu.smart.models.dto.ItemParamsDto;
 import kz.kaznu.smart.models.entities.Item;
 import kz.kaznu.smart.models.entities.ItemParam;
+import kz.kaznu.smart.models.entities.Param;
 import kz.kaznu.smart.models.enums.Params;
 import kz.kaznu.smart.repositories.ItemParamRepository;
 import kz.kaznu.smart.repositories.ItemRepository;
+import kz.kaznu.smart.repositories.ParamRepository;
 import kz.kaznu.smart.services.ParamsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,7 @@ import java.util.stream.Collectors;
 public class ParamsServiceImpl implements ParamsService {
     private final ItemRepository itemRepository;
     private final ItemParamRepository paramRepository;
+    private final ParamRepository paramsRepository;
 
     @Override
     public List<String> getItemParamValuesByItem(Item item, Params param) {
@@ -61,11 +64,46 @@ public class ParamsServiceImpl implements ParamsService {
     }
 
     @Override
+    public Optional<ItemParam> getById(Long paramId) {
+        return paramRepository.getFirstById(paramId);
+    }
+
+    @Override
     public List<ItemParamsDto> getMainParamsByItem(Item item) {
         return paramRepository.getItemParamsByOrderValue(item, Collections.singletonList(0)).stream()
                 .map( i -> new ItemParamsDto(i.getParam().getName().getName(), i.getValue()))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<ItemParam> getItemParamsByItem(Item item) {
+        return paramRepository.getAllParamsByItem(item);
+    }
+
+    @Override
+    public ItemParam save(Item i, Params param, String value, Integer order) {
+        Optional<Param> firstByName = paramsRepository.getFirstByName(param);
+        if (firstByName.isPresent()) {
+            Param params = firstByName.get();
+            boolean ifExist = i.getItemParams().stream().anyMatch(item -> item.getParam().equals(params));
+            if (!ifExist) {
+                ItemParam itemParam = ItemParam.builder()
+                        .param(params)
+                        .item(i)
+                        .value(value)
+                        .orderValue(order)
+                        .build();
+                return paramRepository.save(itemParam);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void delete(ItemParam param) {
+        paramRepository.delete(param);
+    }
+
 }
 
 

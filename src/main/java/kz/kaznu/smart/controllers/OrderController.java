@@ -17,10 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
@@ -36,6 +33,7 @@ public class OrderController {
         Optional<User> currentUser = userService.getCurrentUser();
         if (currentUser.isPresent()) {
             List<Order> orders = orderService.getOrdersByUserEmail(currentUser.get().getEmail());
+            Collections.reverse(orders);
             model.addAttribute("orders", orders);
             model.addAttribute("currentUser", currentUser.get());
             return "orders";
@@ -147,7 +145,7 @@ public class OrderController {
         return "redirect:/admin/orders";
     }
 
-
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/admin/report")
     public String report(Model model) {
         List<Order> orders = orderService.getOrdersByStatus(OrderStatus.DELIVERED);

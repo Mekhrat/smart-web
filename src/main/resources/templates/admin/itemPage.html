@@ -7,6 +7,28 @@
     <script th:src="@{'https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js'}"></script>
     <link rel="stylesheet" type="text/css" th:href="@{'//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css'}">
     <script type="text/javascript" th:src="@{'//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js'}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#employees').dataTable({
+                "language": {
+                    "lengthMenu": "Жол саны _MENU_",
+                    "search": "Іздеу:",
+                    "zeroRecords": "Тауарлар табылмады",
+                    "paginate": {
+                        "first": "Алғашқы",
+                        "last": "Соңғы",
+                        "next": "Келесі",
+                        "previous": "Алдыңғы"
+                    },
+                    "loadingRecords": "Жүктелуде...",
+                    "emptyTable": "Тауарлар табылмады",
+                    "info": " ",
+                    "infoEmpty": " ",
+                    "infoFiltered": "",
+                }
+            });
+        });
+    </script>
 </head>
 
 <div class="sticky-top" th:insert="~{admin/parents/header}"></div>
@@ -17,8 +39,230 @@
 
         <div th:insert="~{/admin/parents/navbar}"></div>
 
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 w-75 mt-5">
-                TEST
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mt-5">
+            <div class="row ms-5">
+                <div class="col-md-9">
+                    <div th:if="${param.success != null}" class="alert alert-success" role="alert">
+                        Өзгерістер сәтті сақталды
+                    </div>
+
+                    <div th:if="${param.error != null}" class="alert alert-danger" role="alert">
+                        Бұл электронды пошта тіркеліп қойылған. Басқа пошта енгізіңіз
+                    </div>
+                </div>
+            </div>
+
+            <form class="ms-5" th:action="@{'/admin/items'}" method="post" th:object="${itemInfo}">
+                <div class="row">
+                    <div class="col-md-8 offset-1">
+                        <input type="hidden" th:field="*{id}" th:value="${itemInfo.getId()}" class="form-control">
+                        <label>Аты:</label>
+                        <input type="text" th:field="*{name}" th:value="${itemInfo.getName()}" required
+                               placeholder="Аты" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-md-8 offset-1">
+                        <label>Толық аты:</label>
+                        <input type="text" th:field="*{fullName}" th:value="${itemInfo.getFullName()}" required
+                               placeholder="Толық аты" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-md-4 offset-1">
+                        <label>Бағасы (₸):</label>
+                        <input type="number" th:field="*{price}" th:value="${itemInfo.getPrice()}" required
+                               placeholder="Бағасы" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Бұрынғы бағасы (₸):</label>
+                        <input type="number" th:field="*{lastPrice}" th:value="${itemInfo.getLastPrice()}"
+                               placeholder="Бұрынғы бағасы" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-md-3 offset-1">
+                        <label>Саны:</label>
+                        <input type="number" th:field="*{quantity}" th:value="${itemInfo.getQuantity()}" required
+                               placeholder="Саны" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-md-3 offset-1">
+                        <label>Бренді:</label>
+                        <select th:field="*{brand}" th:placeholder="Бренді" class="form-control">
+                            <option th:each="brand : ${brands}" th:value="${brand.name()}" th:text="${brand.name()}"
+                                    th:selected="${itemInfo.brand == brand.name()}"></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-md-3 offset-1">
+                        <label>Типі:</label>
+                        <select th:field="*{type}" th:placeholder="Типі" class="form-control">
+                            <option th:each="type : ${types}" th:value="${type.name()}" th:text="${type.getValue()}"
+                                    th:selected="${itemInfo.type == type.name()}"></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-2 offset-1">
+                        <button class="btn btn-outline-success w-100">Сақтау</button>
+                    </div>
+                </div>
+            </form>
+
+
+            <form th:if="${itemInfo.getId() != null}" class="mt-5" th:action="@{'/admin/items/photo'}" th:method="post">
+                <div class="row justify-content-md-center">
+                    <div class="col-md-auto">
+                        <h5>Суреттері</h5>
+                    </div>
+                </div>
+                <hr class="">
+                <div class="row justify-content-md-center">
+                    <div class="col-md-6">
+                        <input type="hidden" th:value="${itemInfo.getId()}" th:name="id">
+
+                        <label >Сурет аты:</label>
+                        <select class="form-control" name="photo">
+                            <option th:value="default_value">Сурет таңдаңыз...</option>
+                            <option th:each="photo : ${listPhoto}" th:value="${photo}" th:text="${photo}"></option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Маңызы:</label>
+                        <select class="form-control" name="main">
+                            <option th:value="0">Қосымша сурет</option>
+                            <option th:value="1">Басты сурет</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="mt-4 w-100 btn btn-outline-success">Қосу</button>
+                    </div>
+                </div>
+            </form>
+            <hr th:if="${itemInfo.getId() != null}" class="mt-4">
+
+            <div th:if="${photos.size() > 0}" class="table-responsive align-center">
+                <table class="table table-sm table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">№</th>
+                        <th scope="col">Сурет</th>
+                        <th scope="col">Аты</th>
+                        <th scope="col">Негізгі сурет</th>
+                        <th scope="col">Әрекет</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="photo : ${photos}">
+                        <td class="align-middle" th:text="${photos.indexOf(photo) + 1}"></td>
+                        <td class="align-middle">
+                            <div class="table-photo">
+                                <img th:src="@{'/photos/' + ${photo.getPhotoName()}}" alt="">
+                            </div>
+                        </td>
+                        <td class="align-middle" th:text="${photo.getPhotoName()}"></td>
+                        <td class="align-middle" th:text="${photo.isMain() ? 'Ия' : 'Жоқ'}"></td>
+                        <td class="align-middle">
+                            <form th:action="@{'/admin/items/photo'}" th:method="DELETE">
+                                <input type="hidden" th:value="${photo.getPhotoName()}" th:name="photo">
+                                <input type="hidden" th:value="${itemInfo.getId()}" th:name="id">
+                                <button class="btn btn-outline-danger w-100">Өшіру</button>
+                            </form>
+                            <form th:if="${!photo.isMain()}" class="mt-3" th:action="@{'/admin/items/photo'}" th:method="PATCH">
+                                <input type="hidden" th:value="${photo.getPhotoName()}" th:name="photo">
+                                <input type="hidden" th:value="${itemInfo.getId()}" th:name="id">
+                                <input type="hidden" value="main" th:name="action">
+                                <button class="btn btn-outline-success w-100">Негізгі</button>
+                            </form>
+                            <form th:if="${photo.isMain()}" class="mt-3" th:action="@{'/admin/items/photo'}" th:method="PATCH">
+                                <input type="hidden" th:value="${photo.getPhotoName()}" th:name="photo">
+                                <input type="hidden" th:value="${itemInfo.getId()}" th:name="id">
+                                <input type="hidden" value="secondary" th:name="action">
+                                <button class="btn btn-outline-warning w-100">Қосымша</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div th:if="${itemInfo.getId() != null}" class="row justify-content-md-center">
+                <div class="col-md-auto">
+                    <h5 class="mt-5">Сипаттамасы</h5>
+                </div>
+            </div>
+
+            <hr th:if="${itemInfo.getId() != null}">
+            <form th:if="${itemInfo.getId() != null}" class="mt-4" th:action="@{'/admin/items/params'}" th:method="post">
+                <div class="row justify-content-md-center">
+                    <div class="col-md-3">
+                        <input type="hidden" th:value="${itemInfo.getId()}" th:name="id">
+
+                        <label >Аты:</label>
+                        <select  class="form-control" name="param">
+                            <option th:value="default_value">Сипаттама аты...</option>
+                            <option th:each="par : ${itemParams}" th:value="${par.name()}" th:text="${par.getName()}"></option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <label>Маңызы:</label>
+                        <select  class="form-control" name="order">
+                        <option th:value="0">Төмен</option>
+                        <option th:value="1">Жоғары</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-5">
+                        <label>Мәні:</label>
+                        <input required class="form-control" type="text" name="value" placeholder="мәні...">
+                    </div>
+
+                    <div class="col-md-2">
+                        <button class="mt-4 w-100 btn btn-outline-success">Қосу</button>
+                    </div>
+                </div>
+            </form>
+            <hr th:if="${itemInfo.getId() != null}" class="mt-5">
+
+            <div th:if="${params.size() > 0}" class="table-responsive">
+                <table id="employees" class="table table-sm table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Аты</th>
+                        <th scope="col">Типі</th>
+                        <th scope="col">Мәні</th>
+                        <th scope="col">Әрекет</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="par : ${params}">
+                        <td class="align-middle" th:text="${params.indexOf(par) + 1}"></td>
+                        <td class="align-middle" th:text="${par.getParam().getName().getName()}"></td>
+                        <td class="align-middle" th:text="${par.getParam().getType().getName()}"></td>
+                        <td class="align-middle" th:text="${par.getValue()}"></td>
+                        <td class="align-middle">
+                            <form th:action="@{'/admin/items/params'}" th:method="DELETE">
+                                <input type="hidden" name="id" th:value="${itemInfo.getId()}">
+                                <input type="hidden" name="paramId" th:value="${par.getId()}">
+                                <button class="btn btn-sm btn-outline-danger">Өшіру</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </main>
     </div>
 </div>

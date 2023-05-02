@@ -5,8 +5,9 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!--    <link rel="shortcut icon" th:href="@{'/image/Smart-Logo-1998.png'}" type="image/png">-->
     <meta th:insert="~{parents/links}">
-    <title>Document</title>
+    <title>Себет</title>
 </head>
 <div th:insert="~{parents/header}"></div>
 <body>
@@ -81,8 +82,7 @@
                             <b>Сома:</b>
                             <p th:text="${#numbers.formatInteger(sum,3,'DEFAULT')} + ' ₸'">510 000тг</p>
                         </div>
-
-                        <button class="btn btn-success w-100">Тапсырысты рәсімдеу</button>
+                        <button class="btn btn-success w-100 mt-1">Тапсырысты рәсімдеу</button>
                     </form>
                 </div>
             </div>

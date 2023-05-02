@@ -1,5 +1,6 @@
 package kz.kaznu.smart.services.impl;
 
+import kz.kaznu.smart.models.dto.EmployeeInfo;
 import kz.kaznu.smart.models.dto.NewUserDto;
 import kz.kaznu.smart.models.entities.Role;
 import kz.kaznu.smart.models.entities.User;
@@ -90,5 +91,32 @@ public class UserServiceImpl implements UserService {
     public List<User> getEmployees() {
         Role role = roleRepository.getRoleByRole("ROLE_USER");
         return userRepository.findAllByRolesNotContaining(role);
+    }
+
+    @Override
+    public Optional<User> getById(Long id) {
+        return userRepository.findById(id);
+    }
+
+    @Override
+    public void delete(User user) {
+        userRepository.delete(user);
+    }
+
+    @Override
+    public User createNewEmployee(EmployeeInfo employeeInfo) {
+        Role role = roleRepository.getRoleByRole(employeeInfo.getRole());
+        User user = User.builder()
+                .name(employeeInfo.getName())
+                .email(employeeInfo.getEmail())
+                .activated(true)
+                .address(employeeInfo.getAddress())
+                .phone(employeeInfo.getPhone())
+                .isBlocked(false)
+                .password(passwordEncoder.encode(employeeInfo.getPassword()))
+                .roles(Collections.singletonList(role))
+                .build();
+
+        return userRepository.save(user);
     }
 }

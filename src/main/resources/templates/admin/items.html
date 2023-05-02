@@ -9,7 +9,7 @@
     <script type="text/javascript" th:src="@{'//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js'}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#orders').dataTable({
+           $('#employees').dataTable({
                 "language": {
                     "lengthMenu": "Жол саны _MENU_",
                     "search": "Іздеу:",
@@ -39,58 +39,54 @@
 
         <div th:insert="~{/admin/parents/navbar}"></div>
 
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mb-3 mt-4">
-            <div class="row justify-content-md-center">
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mb-3">
+            <div class="row justify-content-md-end">
                 <div class="col-md-auto">
-                    <h5 class="">Сурет қосу</h5>
+                    <a class="btn btn-outline-success mt-4" th:href="@{'/admin/newItem'}">Тауар қосу</a>
                 </div>
             </div>
-            <form th:action="@{'/admin/photos'}" method="post" enctype="multipart/form-data">
-                <div class="row">
-                    <div class="col-md-8 offset-1">
-                        <input type="file" name="photo" class="form-control" >
-                    </div>
-                    <div class="col-md-2">
-                        <button class="btn btn-outline-success w-100">Сақтау</button>
-                    </div>
-                </div>
-            </form>
-
             <div class="row justify-content-md-center">
                 <div class="col-md-auto">
-                    <h5 class="mt-5">Табылған суреттер</h5>
+                    <h5 class="mt-4">Тауарлар</h5>
                 </div>
             </div>
-            <div class="table-responsive align-center">
-                <table id="orders" class="table table-sm table-hover">
+            <div class="table-responsive">
+                <table id="employees" class="table table-sm table-hover">
                     <thead>
                     <tr>
-                        <th scope="col">№</th>
-                        <th scope="col">Сурет</th>
+                        <th scope="col">ID</th>
                         <th scope="col">Аты</th>
+                        <th scope="col">Типі</th>
+                        <th scope="col">Бренді</th>
+                        <th scope="col">Бұрығы бағасы</th>
+                        <th scope="col">Қазіргі бағасы</th>
+                        <th scope="col">Саны</th>
                         <th scope="col">Әрекет</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="photo : ${photos}">
-                        <td class="align-middle" th:text="${photos.indexOf(photo) + 1}"></td>
-                        <td class="align-middle">
-                            <div class="table-photo">
-                                <img th:src="@{'/photos/' + ${photo}}" alt="">
-                            </div>
+                    <tr th:each="item : ${items}">
+                        <td class="align-middle" th:text="${items.indexOf(item) + 1}"></td>
+                        <td class="align-middle"><a class="text-decoration-none text-body" th:href="@{'/admin/items/' + ${item.getId()}}" th:text="${item.getFullName()}"></a></td>
+                        <td class="align-middle" th:text="${item.getItemType().name()}"></td>
+                        <td class="align-middle" th:text="${item.getBrand().getName()}"></td>
+                        <td class="align-middle"><p th:if="${item.getLastPrice() != null}"
+                                                    th:text="${#numbers.formatInteger(item.getLastPrice(),3,'DEFAULT')} + ' ₸'"></p>
                         </td>
-                        <td class="align-middle" th:text="${photo}"></td>
+                        <td class="align-middle"><p th:if="${item.getNewPrice() != null}"
+                                                    th:text="${#numbers.formatInteger(item.getNewPrice(),3,'DEFAULT')} + ' ₸'"></p>
+                        </td>
+                        <td class="align-middle" th:text="${item.getQuantity()}"></td>
                         <td class="align-middle">
-                            <form th:action="@{'/admin/photos'}" th:method="DELETE">
-                                <input type="hidden" th:value="${photo}" th:name="photo">
-                                <button class="btn btn-outline-danger">Өшіру</button>
+                            <form th:action="@{'/admin/items'}" th:method="DELETE">
+                                <input type="hidden" name="id" th:value="${item.getId()}">
+                                <button class="btn btn-sm btn-outline-danger">Өшіру</button>
                             </form>
                         </td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-
         </main>
     </div>
 </div>

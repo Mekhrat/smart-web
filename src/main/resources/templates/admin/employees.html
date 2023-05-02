@@ -9,7 +9,7 @@
     <script type="text/javascript" th:src="@{'//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js'}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#orders').dataTable({
+            $('#employees').dataTable({
                 "language": {
                     "lengthMenu": "Жол саны _MENU_",
                     "search": "Іздеу:",
@@ -39,58 +39,48 @@
 
         <div th:insert="~{/admin/parents/navbar}"></div>
 
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mb-3 mt-4">
-            <div class="row justify-content-md-center">
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mb-3">
+            <div class="row justify-content-md-end">
                 <div class="col-md-auto">
-                    <h5 class="">Сурет қосу</h5>
+                    <a class="btn btn-outline-success mt-4" th:href="@{'/admin/employee'}">Қызметкер қосу</a>
                 </div>
             </div>
-            <form th:action="@{'/admin/photos'}" method="post" enctype="multipart/form-data">
-                <div class="row">
-                    <div class="col-md-8 offset-1">
-                        <input type="file" name="photo" class="form-control" >
-                    </div>
-                    <div class="col-md-2">
-                        <button class="btn btn-outline-success w-100">Сақтау</button>
-                    </div>
-                </div>
-            </form>
-
             <div class="row justify-content-md-center">
                 <div class="col-md-auto">
-                    <h5 class="mt-5">Табылған суреттер</h5>
+                    <h5 class="mt-4">Қызметкерлер</h5>
                 </div>
             </div>
-            <div class="table-responsive align-center">
-                <table id="orders" class="table table-sm table-hover">
+            <div class="table-responsive">
+                <table id="employees" class="table table-sm table-hover">
                     <thead>
                     <tr>
-                        <th scope="col">№</th>
-                        <th scope="col">Сурет</th>
-                        <th scope="col">Аты</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Аты-жөні</th>
+                        <th scope="col">Пошта</th>
+                        <th scope="col">Телефон</th>
+                        <th scope="col">Мекен-жайы</th>
+                        <th scope="col">Рөлі
                         <th scope="col">Әрекет</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="photo : ${photos}">
-                        <td class="align-middle" th:text="${photos.indexOf(photo) + 1}"></td>
+                    <tr th:each="employee : ${employees}">
+                        <td class="align-middle" th:text="${employees.indexOf(employee) + 1}"></td>
+                        <td class="align-middle" th:text="${employee.getName()}"></td>
+                        <td class="align-middle" th:text="${employee.getEmail()}"></td>
+                        <td class="align-middle" th:text="${employee.getPhone()}"></td>
+                        <td class="align-middle" th:text="${employee.getAddress()}"></td>
+                        <td class="align-middle"> <span th:each="role : ${employee.getRoles()}" th:text="${role.getRole()}"></span></td>
                         <td class="align-middle">
-                            <div class="table-photo">
-                                <img th:src="@{'/photos/' + ${photo}}" alt="">
-                            </div>
-                        </td>
-                        <td class="align-middle" th:text="${photo}"></td>
-                        <td class="align-middle">
-                            <form th:action="@{'/admin/photos'}" th:method="DELETE">
-                                <input type="hidden" th:value="${photo}" th:name="photo">
-                                <button class="btn btn-outline-danger">Өшіру</button>
+                            <form th:if="${employee.getEmail() != #authentication.getName()}" th:action="@{'/admin/employee'}" th:method="DELETE">
+                                <input type="hidden" name="id" th:value="${employee.getId()}">
+                                <button class="btn btn-sm btn-outline-danger">Өшіру</button>
                             </form>
                         </td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-
         </main>
     </div>
 </div>
