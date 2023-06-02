@@ -82,6 +82,8 @@
                             <b>Сома:</b>
                             <p th:text="${#numbers.formatInteger(sum,3,'DEFAULT')} + ' ₸'">510 000тг</p>
                         </div>
+
+                        <a style="background-color: #ffe827" href="https://api.paybox.money/payment.php?pg_merchant_id=516078&pg_amount=539000&pg_currency=KZT&pg_description=%D0%A1%D0%BC%D0%B0%D1%80%D1%82%D1%84%D0%BE%D0%BD&pg_salt=571VsaLn08TlR0wY&pg_language=kk&pg_sig=12d5c714f507a38f8888a44ce49e82b7" class="btn btn-warning w-100 mt-1">Төлемге өту</a>
                         <button class="btn btn-success w-100 mt-1">Тапсырысты рәсімдеу</button>
                     </form>
                 </div>

@@ -29,8 +29,13 @@
                             <h7 th:if="${order.getStatus().name().equals('DELIVERED')}" style="color: #4db84e" th:text="'Күйі: ' + ${order.getStatus().getName()}"></h7>
                             <h7 th:if="${order.getStatus().name().equals('ISSUED_TO_THE_COURIER')}" style="color: darkcyan" th:text="'Күйі: ' + ${order.getStatus().getName()}"></h7>
                         </div>
+                        <div class="my-orders-info d-flex justify-content-between">
+                            <h6 th:text="'Тапсырыс берілген күні: ' + ${#temporals.format(order.getOrderDate(), 'dd.MM.yyyy hh:mm:ss')}"></h6>
+                            <h6 th:if="${order.isPaid()}" style="color: #10cb1a" th:text="'Төленді'"></h6>
+                            <h6 th:unless="${order.isPaid()}" style="color: red" th:text="'Төленбеді'"></h6>
+                        </div>
                         <h6 th:text="'Жалпы сомасы: ' + ${#numbers.formatInteger(order.getTotal(),3,'DEFAULT')} + ' ₸'"></h6>
-                        <h6 th:text="'Тапсырыс берілген күні: ' + ${#temporals.format(order.getOrderDate(), 'dd.MM.yyyy hh:mm:ss')}"></h6>
+<!--                        <h6 th:text="'Тапсырыс берілген күні: ' + ${#temporals.format(order.getOrderDate(), 'dd.MM.yyyy hh:mm:ss')}"></h6>-->
                         <h6 th:text="'Мекен жай: ' + ${order.getDeliveryAddress()}"></h6>
                         <h6 th:if="${!order.getConsumerIndex().isEmpty()}"
                             th:text="'Индекс: ' + ${order.getConsumerIndex()}"></h6>

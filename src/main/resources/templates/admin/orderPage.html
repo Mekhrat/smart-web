@@ -17,8 +17,9 @@
 
         <div th:insert="~{/admin/parents/navbar}"></div>
 
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 w-75 mt-5 me-5">
-            <div class="p-3">
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 w-75  me-5">
+            <div class="p-3 pb-0">
+                <hr>
                 <div class="my-orders-info d-flex justify-content-between">
                     <h6 th:text="'Тапсырыс нөмірі: ' + ${order.getId()}"></h6>
                     <h7 th:if="${order.getStatus().name().equals('CANCELED')}" style="color: red"
@@ -30,14 +31,23 @@
                     <h7 th:if="${order.getStatus().name().equals('ISSUED_TO_THE_COURIER')}" style="color: darkcyan"
                         th:text="'Күйі: ' + ${order.getStatus().getName()}"></h7>
                 </div>
-                <h6 th:text="'Тапсырыс берілген күні: ' + ${#temporals.format(order.getOrderDate(), 'dd.MM.yyyy hh:mm:ss')}"></h6>
+                <div class="my-orders-info d-flex justify-content-between">
+                    <h6 th:text="'Тапсырыс берілген күні: ' + ${#temporals.format(order.getOrderDate(), 'dd.MM.yyyy hh:mm:ss')}"></h6>
+                    <h6 th:if="${order.isPaid()}" style="color: #10cb1a" th:text="'Төленді'"></h6>
+                    <h6 th:unless="${order.isPaid()}" style="color: red" th:text="'Төленбеді'"></h6>
+                </div>
+<!--                <h6 th:text="'Тапсырыс берілген күні: ' + ${#temporals.format(order.getOrderDate(), 'dd.MM.yyyy hh:mm:ss')}"></h6>-->
                 <h6 th:text="${'Тапсырыс беруші: ' + order.getConsumerName()}"></h6>
                 <h6 th:text="${'Электрондық поштасы: ' + order.getConsumerEmail()}"></h6>
                 <h6 th:if="${!order.getConsumerIndex().isEmpty()}"
                     th:text="'Индекс: ' + ${order.getConsumerIndex()}"></h6>
                 <h6 th:text="'Телефон: ' + ${order.getConsumerPhone()}"></h6>
-                <h6 th:text="'Мекен-жай: ' + ${order.getDeliveryAddress()}"></h6>
+                <h6 th:text="'Мекен-жайы: ' + ${order.getDeliveryAddress()}"></h6>
+                <h6 th:if="${order.getStatus().name() != 'IN_PROCESSING'}" th:text="'Курьер: ' + ${order.getCourierEmail()}"></h6>
+<!--                <h6 th:text="'Төлем: ' + ${order.isPaid() ? 'Төленді' : 'Төленбеді'}"></h6>-->
+                <hr>
                 <h5 th:text="'Жалпы сомасы: ' + ${#numbers.formatInteger(order.getTotal(),3,'DEFAULT')} + ' ₸'"></h5>
+                <hr>
             </div>
 
             <div th:each="item : ${order.getItems()}" class="my-order">
@@ -80,7 +90,7 @@
 
                 <form th:if="${order.getStatus().name().equals('ISSUED_TO_THE_COURIER')}" class="col-md-3 offset-5" th:action="@{'/admin/orders/toInProgress'}" th:method="POST">
                     <input type="hidden" name="orderId" th:value="${order.getId()}">
-                    <button class="btn btn-primary w-75 ms-1">Курьерден алу</button>
+                    <button class="btn btn-primary w-75 ms-5">Курьерден алу</button>
                 </form>
             </div>
         </main>

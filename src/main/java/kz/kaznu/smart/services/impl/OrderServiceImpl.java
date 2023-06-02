@@ -36,6 +36,7 @@ public class OrderServiceImpl implements OrderService {
                 .consumerPhone(consumerInfo.getPhone())
                 .deliveryAddress(consumerInfo.getAddress())
                 .status(OrderStatus.IN_PROCESSING)
+                .isPaid(false)
                 .items(items)
                 .total(total)
                 .build();

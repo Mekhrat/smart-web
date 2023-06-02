@@ -70,7 +70,8 @@ public class FavoritesController {
         if (id == 0)
             return "redirect:/favorites";
 
-        Optional<User> user = userService.getUserByEmail("mekhrat_ashirbekov@mail.ru");
+//        Optional<User> user = userService.getUserByEmail("mekhrat_ashirbekov@mail.ru");
+        Optional<User> user = userService.getCurrentUser();
         Optional<Item> item = itemService.getItemById(id);
         if (user.isPresent() && item.isPresent()) {
             Optional<Favorite> favorite = favoriteService.getFavoriteItemsByUserAndItem(user.get().getEmail(), item.get());

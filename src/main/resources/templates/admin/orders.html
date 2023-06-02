@@ -87,6 +87,7 @@
                         <th scope="col">Телефон</th>
                         <th scope="col">Уақыты</th>
                         <th scope="col">Индекс</th>
+                        <th scope="col">Төлем</th>
                         <th scope="col">Сомасы</th>
                     </tr>
                     </thead>
@@ -105,6 +106,8 @@
                                th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
                         <td class="align-middle"><a class="text-decoration-none text-body" th:text="${order.getConsumerIndex()}"
                                th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
+                        <td class="align-middle"><a class="text-decoration-none text-body" th:text="${order.isPaid() ? 'Төленді' : 'Төленбеді'}"
+                                                    th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
                         <td class="align-middle"><a class="text-decoration-none text-body"
                                th:text="${#numbers.formatInteger(order.getTotal(),3,'DEFAULT')} + ' ₸'"
                                th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
@@ -113,12 +116,13 @@
                 </table>
             </div>
 
+
             <div class="row justify-content-md-center">
                 <div class="col-md-auto">
                     <h5 class="mt-4">Курьерге берілген тапсырыстар</h5>
                 </div>
             </div>
-            <div class="table-responsive">
+            <div class="table-responsive mb-3">
                 <table id="issuedToTheCourier" class="table table-sm table-hover">
                     <thead>
                     <tr>
@@ -127,8 +131,9 @@
                         <th scope="col">Пошта</th>
                         <th scope="col">Телефон</th>
                         <th scope="col">Индекс</th>
-                        <th scope="col">Сомасы</th>
+                        <th scope="col">Төлем</th>
                         <th scope="col">Курьер</th>
+                        <th scope="col">Сомасы</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -143,11 +148,14 @@
                                th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
                         <td class="align-middle"><a class="text-decoration-none text-body" th:text="${order.getConsumerIndex()}"
                                th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
+                        <td class="align-middle"><a class="text-decoration-none text-body" th:text="${order.isPaid() ? 'Төленді' : 'Төленбеді'}"
+                                                    th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
+                        <td class="align-middle"><a class="text-decoration-none text-body" th:text="${order.getCourierEmail()}"
+                                                    th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
                         <td class="align-middle"><a class="text-decoration-none text-body"
                                th:text="${#numbers.formatInteger(order.getTotal(),3,'DEFAULT')} + ' ₸'"
                                th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
-                        <td class="align-middle"><a class="text-decoration-none text-body" th:text="${order.getCourierEmail()}"
-                               th:href="@{'/admin/orders/' + ${order.getId()}}"></a></td>
+
 
                     </tr>
                     </tbody>
